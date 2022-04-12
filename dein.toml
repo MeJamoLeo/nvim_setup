@@ -1,0 +1,52 @@
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+# ------------------------------------
+# Color Scheme
+# ------------------------------------
+[[plugins]]
+repo = 'tomasiser/vim-code-dark'
+hook_add = '''
+" colorscheme codedark
+colorscheme darkblue
+let g:airline_theme = 'codedark'
+'''
+
+# ------------------------------------
+# Editor
+# ------------------------------------
+[[plugins]]
+repo = 'tpope/vim-surround'
+
+[[plugins]]
+repo = 'jiangmiao/auto-pairs'
+
+[[plugins]]
+repo = 'sirver/ultisnips'
+hook_add = '''
+" Trigger configuration. You need to change this to something other than <tab> if you use one of the following:
+" - https://github.com/Valloric/YouCompleteMe
+" - https://github.com/nvim-lua/completion-nvim
+let g:UltiSnipsExpandTrigger="<c-k>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="horizontal"
+'''
+
+# ------------------------------------
+# filer
+# ------------------------------------
+[[plugins]]
+repo = 'junegunn/fzf'
+build = './install --bin'
+merged = '0'
+
+[[plugins]]
+repo = 'junegunn/fzf.vim'
+depends = 'fzf'
+hook_add = '''
+command! -bang -nargs=* Rg
+\ call fzf#vim#grep(
+        \   'rg --line-number --no-heading '.shellescape(<q-args>), 0,
+        \   fzf#vim#with_preview({'options': '--exact --reverse'}, 'right:50%:wrap'))
+'''
